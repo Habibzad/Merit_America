@@ -29,7 +29,7 @@ public class KarelDefendsDemocracy extends SuperKarel {
 		turnRight();
 	}
 	
-	
+	//Check if Karl the robot is not at the end of punch-card ballot
 	private void moveAhead() {
 		move();
 		if(!frontIsBlocked()) {
