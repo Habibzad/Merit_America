@@ -5,14 +5,14 @@ public class KarelDefendsDemocracy extends SuperKarel {
 
 	public void run() {
 		move();
-		checkBeeper();	
+		while(!frontIsBlocked()) {
+			checkBeeper();
+			moveAhead();
+		}
 	}
 	
 	void checkBeeper() {
-		if(beepersPresent()) {
-			moveAhead();
-		}
-		else {
+		if(!beepersPresent()) {
 			collectBeepers();
 		}
 	}
@@ -20,30 +20,26 @@ public class KarelDefendsDemocracy extends SuperKarel {
 	void collectBeepers() {
 		turnLeft();
 		move();
-		while(beepersPresent()) {
-			pickBeeper();
-		}
+		pickBeepers();
 		turnAround();
-		move();
-		move();
-		while(beepersPresent()) {
-			pickBeeper();
-		}
+		moveAhead();
+		pickBeepers();
 		turnAround();
 		move();
 		turnRight();
-		moveAhead();
-		checkBeeper();
 	}
 	
 	
-	void moveAhead() {
+	private void moveAhead() {
 		move();
-		while(frontIsClear()) {
+		if(!frontIsBlocked()) {
 			move();
-			checkBeeper();
 		}
 	}
 	
-		
+	private void pickBeepers() {
+		while(beepersPresent()) {
+			pickBeeper();
+		}
+	}
 }
