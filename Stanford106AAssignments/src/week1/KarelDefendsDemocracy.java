@@ -11,13 +11,13 @@ public class KarelDefendsDemocracy extends SuperKarel {
 		}
 	}
 	
-	void checkBeeper() {
+	private void checkBeeper() {
 		if(!beepersPresent()) {
 			collectBeepers();
 		}
 	}
 	
-	void collectBeepers() {
+	private void collectBeepers() {
 		turnLeft();
 		move();
 		pickBeepers();
