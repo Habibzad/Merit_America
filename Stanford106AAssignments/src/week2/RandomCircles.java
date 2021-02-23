@@ -23,12 +23,20 @@ public class RandomCircles extends GraphicsProgram {
 			double r = random.nextDouble(MIN_RADIUS, MAX_RADIUS);
 			double x = random.nextDouble(0, getWidth() - 2 * r);
 			double y = random.nextDouble(0, getHeight() - 2 * r);
-			GOval o = filledCircle(x, y, r, random.nextColor());
-			add(o);
+			GOval circle = filledCircle(x, y, r, random.nextColor());
+			add(circle);
+			
 		}
-		
+				
 	}
-	
+	/**
+	 * 
+	 * @param x passed by the random generator
+	 * @param y passed by the random generator
+	 * @param r passed by the random generator
+	 * @param color passed by the random generator
+	 * @return returns a circle with a random size, position, and color
+	 */
 	private GOval filledCircle(double x, double y, double r, Color color) {
 		GOval circle = new GOval(x, y, 2*r, 2*r);
 		circle.setFilled(true);
