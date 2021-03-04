@@ -15,19 +15,13 @@ public class Histograms extends ConsoleProgram {
 	String fileName = "C:\\Users\\ahmad\\Desktop\\scores.txt";
 
 	public void run() {
-		initHistogram();
-		readData();
-		printHistogram();
-	}
-
-	private void initHistogram() {
+		// Initialize array
 		histogramArray = new int[11];
 		for (int i = 0; i < 10; i++) {
 			histogramArray[i] = 0;
 		}
-	}
 
-	private void readData() {
+		// Create BufferReader and read the lines
 		try {
 			fileReader = new FileReader(fileName);
 			bufferedReader = new BufferedReader(fileReader);
@@ -48,9 +42,8 @@ public class Histograms extends ConsoleProgram {
 		} catch (Exception e) {
 			println("eception occured" + e);
 		}
-	}
 
-	private void printHistogram() {
+		// Print the histogram
 		for (int range = 0; range < 10; range++) {
 			String label;
 			switch (range) {
@@ -67,14 +60,15 @@ public class Histograms extends ConsoleProgram {
 			String stars = createStars(histogramArray[range]);
 			println(label + ": " + stars);
 		}
+
 	}
 
-	private String createStars(int num) {
-		String star = "";
-		for (int i = 0; i < num; i++) {
-			star += "*";
+	private String createStars(int range) {
+		String stars = "";
+		for (int i = 0; i < range; i++) {
+			stars += "*";
 		}
-		return star;
+		return stars;
 	}
 
 }
