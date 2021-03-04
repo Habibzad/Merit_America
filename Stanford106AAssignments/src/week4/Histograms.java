@@ -8,59 +8,60 @@ import acmx.export.java.io.FileReader;
 
 public class Histograms extends ConsoleProgram {
 
-	private int[] histogramArray;
-	private String fileName = "C:\\Users\\ahmad\\Desktop\\scores.txt";
-	private String line;
+	private int histogramArray[];
 	BufferedReader bufferedReader;
 	FileReader fileReader;
+	String line;
+	String fileName = "C:\\Users\\ahmad\\Desktop\\scores.txt";
 
 	public void run() {
 		initHistogram();
-		readScoresIntoHistogram();
+		readData();
 		printHistogram();
 	}
 
 	private void initHistogram() {
-		histogramArray = new int[11]; // Number of ranges
-		// Set the ranges to 0
-		for (int i = 0; i <= 10; i++) {
+		histogramArray = new int[11];
+		for (int i = 0; i < 10; i++) {
 			histogramArray[i] = 0;
 		}
 	}
 
-	private void readScoresIntoHistogram() {
+	private void readData() {
 		try {
 			fileReader = new FileReader(fileName);
 			bufferedReader = new BufferedReader(fileReader);
 			while (true) {
 				line = bufferedReader.readLine();
-				if (line == null)
+				if (line == null) {
 					break;
+				}
 				int score = Integer.parseInt(line);
 				if (score < 0 || score > 100) {
-					throw new ErrorException("Score is out of range");
+					throw new Exception("Score out of range");
 				} else {
 					int range = score / 10;
 					histogramArray[range]++;
 				}
+
 			}
-		} catch (IOException ex) {
-			throw new ErrorException(ex);
+		} catch (Exception e) {
+			println("eception occured" + e);
 		}
 	}
 
 	private void printHistogram() {
-		for (int range = 0; range <= 10; range++) {
+		for (int range = 0; range < 10; range++) {
 			String label;
 			switch (range) {
 				case 0:
 					label = "00-09";
 					break;
-				case 10:
-					label = " 100";
+				case 100:
+					label = "100";
 					break;
 				default:
-					label = (10 * range) + "-" + (10 * range + 9);
+					label = (range * 10) + "-" + (range * 10 + 9);
 					break;
 			}
 			String stars = createStars(histogramArray[range]);
@@ -68,12 +69,12 @@ public class Histograms extends ConsoleProgram {
 		}
 	}
 
-	private String createStars(int n) {
-		String stars = "";
-		for (int i = 0; i < n; i++) {
-			stars += "*";
+	private String createStars(int num) {
+		String star = "";
+		for (int i = 0; i < num; i++) {
+			star += "*";
 		}
-		return stars;
+		return star;
 	}
 
 }
