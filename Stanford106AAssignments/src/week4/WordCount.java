@@ -40,20 +40,13 @@ public class WordCount extends ConsoleProgram {
 
 	// Words Count Method
 	private int countWords(String line) {
-		boolean inWord = false;
 		int totalWords = 0;
 		for (int i = 0; i < line.length(); i++) {
 			char ch = line.charAt(i);
 			if (Character.isLetterOrDigit(ch)) {
-				inWord = true;
-			} else {
-				if (inWord)
-					totalWords++;
-				inWord = false;
+				totalWords++;
 			}
 		}
-		if (inWord)
-			totalWords++;
 		return totalWords;
 	}
 
