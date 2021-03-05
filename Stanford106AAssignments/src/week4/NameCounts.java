@@ -4,6 +4,7 @@ import acm.program.*;
 import java.util.*;
 
 public class NameCounts extends ConsoleProgram {
+	@SuppressWarnings("deprecation")
 	public void run() {
 		HashMap<String, Integer> names = new HashMap<String, Integer>();
 
@@ -12,8 +13,7 @@ public class NameCounts extends ConsoleProgram {
 			String name = readLine("Enter name: ");
 			if (name.equals(""))
 				break;
-			// See if that name previously appeared in the map. Update
-			// count if it did, or create a new count if it didn't.
+
 			Integer count = names.get(name);
 			if (count == null) {
 				count = new Integer(1);
@@ -24,12 +24,11 @@ public class NameCounts extends ConsoleProgram {
 		}
 
 		// print the list of names and number of occurances
-		Iterator<String> it = names.keySet().iterator();
-		while (it.hasNext()) {
-			String key = it.next();
+		Iterator<String> iterator = names.keySet().iterator();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 			int count = names.get(key);
 			println("Entry [" + key + "] has count " + count);
 		}
 	}
-
 }
